@@ -136,6 +136,13 @@ config i686
 config m68k
 	bool
 
+config microblaze
+	select BIG_ENDIAN
+	bool
+
+config microblazeel
+	bool
+
 config mips
 	select BIG_ENDIAN
 	bool
@@ -194,6 +201,8 @@ config ARCH
 	default "i386"      if i386
 	default "i686"      if i686
 	default "m68k"      if m68k
+	default "microblaze"   if microblaze
+	default "microblazeel" if microblazeel
 	default "mips"      if mips
 	default "mipsel"    if mipsel
 	default "mips64"    if mips64
