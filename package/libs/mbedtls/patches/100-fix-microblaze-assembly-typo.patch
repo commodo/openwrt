@@ -1,0 +1,13 @@
+diff --git a/include/mbedtls/bn_mul.h b/include/mbedtls/bn_mul.h
+index 5f59ec6..28ccc5a 100644
+--- a/include/mbedtls/bn_mul.h
++++ b/include/mbedtls/bn_mul.h
+@@ -522,7 +522,7 @@
+         "swi   r3,   %2         \n\t"   \
+         : "=m" (c), "=m" (d), "=m" (s)              \
+         : "m" (s), "m" (d), "m" (c), "m" (b)        \
+-        : "r3", "r4"  "r5", "r6", "r7", "r8",       \
++        : "r3", "r4", "r5", "r6", "r7", "r8",       \
+           "r9", "r10", "r11", "r12", "r13"          \
+     );
+ 
