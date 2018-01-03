@@ -2,6 +2,7 @@
 
 choice
 	prompt "GCC compiler Version" if TOOLCHAINOPTS
+	default GCC_USE_VERSION_7 if microblaze || microblazeel
 	default GCC_USE_VERSION_6_3_ARC if arc
 	default GCC_USE_VERSION_5
 	help
@@ -14,11 +15,11 @@ choice
 
 	config GCC_USE_VERSION_5
 		bool "gcc 5.x"
-		depends on !arc
+		depends on !arc && !microblaze && !microblazeel
 
 	config GCC_USE_VERSION_6
 		bool "gcc 6.x"
-		depends on !arc
+		depends on !arc && !microblaze && !microblazeel
 
 	config GCC_USE_VERSION_7
 		bool "gcc 7.x"
