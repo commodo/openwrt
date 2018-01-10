@@ -65,6 +65,7 @@ define ZynqDevice
 endef
 
 $(eval $(call ZynqDevice,ZC702,zc702))
+$(eval $(call ZynqDevice,ZC706,zc706))
 $(eval $(call ZynqDevice,ZedBoard,zed))
 $(eval $(call ZynqDevice,ZYBO,zybo))
 
