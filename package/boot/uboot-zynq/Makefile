@@ -39,6 +39,7 @@ endef
 
 UBOOT_TARGETS := \
 	zc702 \
+	zc706 \
 	zed \
 	zybo
 
