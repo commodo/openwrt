@@ -11,21 +11,9 @@ include $(INCLUDE_DIR)/image.mk
 # Images
 #################################################
 
-# $(1): rootfs contents directory
-define Image/mkfs/cpio
-	( cd $(call mkfs_target_dir,$(1))/; find . | cpio -o -H newc | gzip -9n > $@ )
-endef
-
-# $(1): zynq board id
+# The kernel build, already created system.dtb
 define Build/dtb
-	$(call Image/BuildDTB,$(DTS_DIR)/zynq-$(1).dts,$@.dtb)
-endef
-
-define Build/uRamdisk
-	# Create uboot cpio.gz
-	mkimage -A arm -T ramdisk -C gzip -n "$(PROFILE) OpenWRT rootfs" \
-		-d $(IMAGE_ROOTFS) $@.new
-	mv $@.new $@
+	:
 endef
 
 #################################################
@@ -37,5 +25,18 @@ KERNEL_LOADADDR=0x8000
 KERNEL_ENTRY=0x8000
 
 TARGET_FILESYSTEMS += cpio
+
+define MicroblazeDevice
+  define Device/$(1)
+	DEVICE_TITLE := $(1) development board
+	KERNEL := dtb $(2) | kernel-bin | uImage none
+	KERNEL_NAME = simpleImage.system
+	IMAGES := simpleImage.system
+	IMAGE_NAME = $$$$(IMG_PREFIX)-$(2)-$$$$(2)
+  endef
+  TARGET_DEVICES += $(1)
+endef
+
+$(eval $(call MicroblazeDevice,Default,system))
 
 $(eval $(call BuildImage))

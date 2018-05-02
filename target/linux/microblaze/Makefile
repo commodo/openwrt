@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 
 BOARD:=microblaze
 BOARDNAME:=Microblaze Soft Processor
-FEATURES:=fpu gpio rtc usb usbgadget targz
+FEATURES:=fpu cpiogz rtc usb targz
 SUBTARGETS:=microblaze microblazeel
 MAINTAINER:=Alexandru Ardelean <alexandru.ardelean@analog.com>
 
