@@ -6,8 +6,9 @@
 #
 
 HOST_TAR:=$(TAR)
-TAR_CMD=$(HOST_TAR) -C $(1)/.. $(TAR_OPTIONS)
-UNZIP_CMD=unzip -q -d $(1)/.. $(DL_DIR)/$(PKG_SOURCE)
+TAR_CMD=$(HOST_TAR) -C $(1) --strip-components=1 $(TAR_OPTIONS)
+UNZIP_CMD=unzip -q -d $(1) $(DL_DIR)/$(PKG_SOURCE) && \
+	  mv $(dir $(1))/$(patsubst %.zip,%,$(PKG_SOURCE)) $(PKG_BUILD_DIR)
 
 ifeq ($(PKG_SOURCE),)
   PKG_UNPACK ?= true
